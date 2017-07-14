@@ -1,0 +1,7 @@
+<template name="products_page">
+    {{> product_search output='productSearch'}}
+    <!--{{> sort output='sort' initial=sortInitial}}-->
+    <!--{{> reset output='sale'}}-->
+    {{> product_list queryInput="productSearch" output="product"}} <!-- sortInput='sort'}} -->
+    {{> product_form input="product"}}
+</template>

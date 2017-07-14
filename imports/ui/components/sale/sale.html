@@ -1,0 +1,32 @@
+<template name="sale_form">
+    <div>
+        <a href="#" class="submit">Nueva venta</a>
+    </div>
+</template>
+
+<template name="line_form">
+    <div>
+        <span>cantidad:</span>
+        <input type="text" name="quantity" class="integer" value={{doc 'quantity'}}>
+        <span>código:</span>
+        <input type="text" id="line-enter" name="code" class="string enter-submit" value={{doc 'code'}}>
+    </div>
+</template>
+
+<template name="lines">
+    {{# each line }}
+        <div>
+            {{name}}, {{quantity}}, {{price}}
+        </div>
+    {{/ each }}
+</template>
+
+<template name="sales_today">
+    <div>
+        {{# each sales_today}}
+            <div>
+                <span>{{date}}</span><a href="#" class="edit">editar</a>
+            </div>
+        {{/ each }}
+    </div>
+</template>

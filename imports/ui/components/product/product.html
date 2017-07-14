@@ -1,0 +1,91 @@
+<template name="product_search">
+    <div>
+        <span>
+            <span>code: </span>
+            <input type="text" name="code" class="string" value={{doc 'code'}}>
+        </span>
+            {{# if isValid}}
+                <a href="#" class="submit">Buscar</a>
+            {{/ if}}
+    </div>
+</template>
+
+<template name="product_list">
+    <div>
+        <h3>Datos para el código {{code}}:</h3>
+        <table>
+            {{# each products}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{price}}</td>
+                    <td>{{stock}}</td>
+                    <td><a docId={{_id}} class="edit">edit</a></td>
+                </tr>
+            {{/ each}}
+        </table>
+    </div>
+</template>
+
+<template name="product_form">
+    <div>
+        <table>
+            <tr>
+                <td>nombre</td>
+                <td><input type="text" class="string form-control" name="name" value="{{doc 'name'}}"></td>
+            </tr>
+            <tr>
+                <td>descripción</td>
+                <td><textarea class="string form-control" name="description">{{doc 'description'}}</textarea></td>
+            </tr>
+            <tr>
+                <td>código</td>
+                <td><input type="text" class="string form-control" name="code" value="{{doc 'code'}}"></td>
+            </tr>
+            <tr>
+                <td>precio</td>
+                <td><input type="text" class="float form-control" name="price" value="{{doc 'price'}}"></td>
+            </tr>
+            <tr>
+                <td>stock</td>
+                <td><input type="text" class="integer form-control" name="stock" value="{{doc 'stock'}}"></td>
+            </tr>
+        </table>
+        {{# if isValid }}
+            <a href="#" class="submit">Guardar</a>
+        {{/ if }}
+    </div>
+</template>
+
+<template name="add_stock">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5"><label class="control-label">Introduce cantidad y código</label></div>
+            <div class="col-sm-2"><input type="text" class="integer form-control" name="quantity" value="{{doc 'quantity'}}"></div>
+            <div class="col-sm-5"><input type="text" id="stock-enter" class="string enter-submit form-control" name="code" value="{{doc 'code'}}"></div>
+        </div>
+    </div>
+</template>
+
+<template name="list_stock_today">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>código</th>
+                <th>nombre</th>
+                <th>precio</th>
+                <th>stock</th>
+            </tr>
+            </thead>
+            {{# each stock_today }}
+                <tr><td>{{code}}</td>
+                    <td>{{name}}</td>
+                    <td>{{price}}</td>
+                    <td>{{stock}}</td>
+                    <td><a href="#" class="edit">editar</a></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</template>
+

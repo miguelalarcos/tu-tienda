@@ -1,0 +1,6 @@
+<template name="stock_page">
+    {{#onlyIfLoggedIn}}
+        {{> add_stock initial=initial output='_product' callback=callback }} <!-- there's a map form _product to product -->
+        {{> list_stock_today output='product' sortInput='stock.sort' callback=listCallback}}
+    {{/onlyIfLoggedIn}}
+</template>

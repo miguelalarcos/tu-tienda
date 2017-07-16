@@ -2,7 +2,11 @@
     <div>
         <span>
             <span>code: </span>
-            <input type="text" name="code" class="string" value={{doc 'code'}}>
+            <input type="text" name="code$eq" class="string" value={{doc 'code$eq'}}>
+            <span>name: </span>
+            <input type="text" name="name$regex" class="string" value={{doc 'name$regex'}}>
+            <span>stock: </span>
+            <input type="text" name="stock$lte" class="integer" value={{doc 'stock$lte'}}>
         </span>
             {{# if isValid}}
                 <a href="#" class="submit">Buscar</a>
@@ -12,8 +16,8 @@
 
 <template name="product_list">
     <div>
-        <h3>Datos para el código {{code}}:</h3>
-        <table>
+        <h3>Productos:</h3>
+        <table class="table">
             {{# each products}}
                 <tr>
                     <td>{{name}}</td>
@@ -26,30 +30,42 @@
     </div>
 </template>
 
+<template name="product_display">
+    <div>
+        {{#with doc}}
+            _id: {{_id}}
+        {{/with}}
+    </div>
+</template>
+
+<template name="new_product">
+    <a href="#" class="reset">nuevo producto</a>
+</template>
+
 <template name="product_form">
     <div>
-        <table>
-            <tr>
-                <td>nombre</td>
-                <td><input type="text" class="string form-control" name="name" value="{{doc 'name'}}"></td>
-            </tr>
-            <tr>
-                <td>descripción</td>
-                <td><textarea class="string form-control" name="description">{{doc 'description'}}</textarea></td>
-            </tr>
-            <tr>
-                <td>código</td>
-                <td><input type="text" class="string form-control" name="code" value="{{doc 'code'}}"></td>
-            </tr>
-            <tr>
-                <td>precio</td>
-                <td><input type="text" class="float form-control" name="price" value="{{doc 'price'}}"></td>
-            </tr>
-            <tr>
-                <td>stock</td>
-                <td><input type="text" class="integer form-control" name="stock" value="{{doc 'stock'}}"></td>
-            </tr>
-        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">nombre</div>
+                <div class="col-sm-4"><input type="text" class="string form-control" name="name" value="{{doc 'name'}}"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">descripción</div>
+                <div class="col-sm-4"><textarea class="string form-control" name="description">{{doc 'description'}}</textarea></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">código</div>
+                <div class="col-sm-4"><input type="text" class="string form-control" name="code" value="{{doc 'code'}}"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">precio</div>
+                <div class="col-sm-4"><input type="text" class="float form-control" name="price" value="{{doc 'price'}}"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">stock</div>
+                <div class="col-sm-4"><input type="text" class="integer form-control" name="stock" value="{{doc 'stock'}}"></div>
+            </div>
+        </div>
         {{# if isValid }}
             <a href="#" class="submit">Guardar</a>
         {{/ if }}
@@ -83,6 +99,7 @@
                     <td>{{price}}</td>
                     <td>{{stock}}</td>
                     <td><a href="#" class="edit">editar</a></td>
+                    <td><a href="#" class="remove">eliminar</a></td>
                 </tr>
             {{/each}}
         </table>

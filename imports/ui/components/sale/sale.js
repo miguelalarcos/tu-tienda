@@ -27,11 +27,13 @@ Template.sales_today.onCreated(function() {
 
 qList(Template.sales_today, {subs: 'sales_today', schema: {}, collection: Sale});
 
-const qArray = (template, subs, array) => {
+const qArray = (template, collection, subs, array) => {
 
     template.onCreated(function () {
-        const _id = Session.get(this.data.input)._id;
-        this.subscribe(subs, _id);
+        this.autorun(function(){
+            const _id = Session.get(this.data.input)._id;
+            this.subscribe(subs, _id);
+        });
     });
 
     template.events({
@@ -43,10 +45,10 @@ const qArray = (template, subs, array) => {
     template.helpers({
         line(){
             let doc = Session.get(Template.instance().data.input);
-            doc = Sale.findOne(doc._id);
+            doc = collection.findOne(doc._id);
             return doc[array];
         }
     });
 };
 
-qArray(Template.lines, 'sale._id', 'lines');
+qArray(Template.lines, Sale, 'sale._id', 'lines');

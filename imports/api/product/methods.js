@@ -1,3 +1,4 @@
+import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { Product, ProductSchema, AddStockSchema } from '/imports/api/product/product.js';
 import { isValid, save } from 'meteor/miguelalarcos:quick-search-form';
@@ -20,5 +21,10 @@ Meteor.methods({
             Security.can(Meteor.userId()).update(doc._id).for(Product).throw();
         }
         return save(doc, Product, ProductSchema);
+    },
+    'product.remove'(_id){
+        check(_id, String);
+        Security.can(Meteor.userId()).remove(_id).for(Product).throw();
+        Product.remove(_id);
     }
 });

@@ -10,4 +10,4 @@ Security.defineMethod('ownsDocument', {
     }
 });
 
-Product.permit(['update']).ownsDocument('ownerId');
+Product.permit(['update', 'remove']).ownsDocument('ownerId');

@@ -20,5 +20,7 @@ export const AddStockSchema = {
 };
 
 export const ProductSearchSchema = {
-    code: {type: 'integer', required: true}
+    'code$eq': {type: 'string'},
+    'name$regex': {type: 'string'},
+    'stock$lte': {type: 'integer'}
 };

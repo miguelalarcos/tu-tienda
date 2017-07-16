@@ -1,7 +1,8 @@
 <template name="products_page">
-    {{> product_search output='productSearch'}}
-    <!--{{> sort output='sort' initial=sortInitial}}-->
-    <!--{{> reset output='sale'}}-->
-    {{> product_list queryInput="productSearch" output="product"}} <!-- sortInput='sort'}} -->
-    {{> product_form input="product"}}
+    {{#onlyIfLoggedIn}}
+        {{> product_search output='productSearch'}}
+        <!--{{> product_sort output='sort' initial=sortInitial}}-->
+        {{> new_product output='product' callback=np_callback}}
+        {{> product_list queryInput="productSearch" output="product" callback=pl_callback}} <!-- sortInput='sort'}} -->
+    {{/onlyIfLoggedIn}}
 </template>

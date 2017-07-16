@@ -1,3 +1,6 @@
 <template name="product_page">
-    {{> product_form input='product' callback=callback}}
+    {{#onlyIfLoggedIn}}
+        {{> product_display input='product'}}
+        {{> product_form input='product' callback=callback}}
+    {{/onlyIfLoggedIn}}
 </template>
